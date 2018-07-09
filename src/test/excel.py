@@ -4,13 +4,27 @@ from os.path import join
 from xlrd import open_workbook
 from xlutils.copy import copy
 import os,sys
+import random
+import os
+from openpyxl import Workbook, load_workbook
+from contextlib import closing
+import openpyxl
+import xlutils
+import win32com.client as win32
+from openpyxl.styles import colors
+from openpyxl.styles import Font, Color
+from openpyxl.styles import colors
+from openpyxl import Workbook
+import subprocess
 
 class ReadAndWriteExcel:
 
     def __init__(self):
-        self.FilePath='G:\\pythonCase\\1.xls'
+        self.FilePath='G:\\pythonCase\\1.xlsx'
         self.sheetName='test'
         self.rb='r+w+b'
+        
+ 
 
     def Set_ExcelPath(self,FilePath):
         self.FilePath=FilePath.replace('\\', '/')
@@ -54,7 +68,7 @@ class ReadAndWriteExcel:
 tt=ReadAndWriteExcel()
 tt.getfilepath('test')
 tt.Write_Excel('test',0,1,'ddd')
-tt.Get_ColIndexData_By_SheetName('test',0)
+tt.Get_RowCount_By_SheetName('test')
 
 
 if __name__ == '__main__':
