@@ -7,7 +7,7 @@ from retry import retry
 import logging
 
 logging.basicConfig()
-@retry(tries=10, delay=1,jitter=1)
+@retry(tries=10, delay=1,jitter=1)#重试机制，如果buy()方法执行失败，会每隔1s,重新执行10次该方法，直到成功
 def buy():
     driver.find_element_by_xpath('//*[@id="J_juValid"]/div[1]/a').click()#点击立即购买
     pag.scroll(-900)
@@ -20,13 +20,13 @@ def login(url):
     driver.find_element_by_xpath('//*[@id="J_SiteNavLogin"]/div[1]/div[1]/a[1]').click()#点击请登录
     #手动扫码登录
     time.sleep(10)     
-    pag.scroll(-600)
+    pag.scroll(-600)#页面往下滚动600,使需要操作的元素显示在屏幕上
     time.sleep(2)   
     driver.find_element_by_xpath('//*[@id="J_isku"]/div/dl[1]/dd/ul/li[2]/a/span').click()#选择尺码
     time.sleep(2)  
     monitor()
 
-def monitor():
+def monitor():#监控线程
     interval = 0.1
     last = 1800
     elapse = 0
